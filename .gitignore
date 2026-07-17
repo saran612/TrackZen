@@ -31,3 +31,6 @@ dist/
 *.swp
 .DS_Store
 .gemini/
+
+# Ignore backend models and datasets
+backend/models/
