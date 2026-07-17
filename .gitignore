@@ -34,3 +34,4 @@ dist/
 
 # Ignore backend models and datasets
 backend/models/
+backend/outputs
