@@ -1,0 +1,33 @@
+# Git ignore rules for TrackZen project
+
+# Instruction folder containing instructions/rubrics
+.instruction/
+
+# Python ignore rules
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node/Vite ignore rules (if root/sub-directories use Node)
+node_modules/
+dist/
+.eslintcache
+
+# IDE and general OS files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+.gemini/
