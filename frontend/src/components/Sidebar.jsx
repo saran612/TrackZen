@@ -45,7 +45,8 @@ export default function Sidebar() {
 
       <div className="sidebar-footer">
         <button className="btn btn-primary w-full flex items-center justify-center gap-2 mb-4">
-          <Download size={16} /> Export Report
+          <Download size={16} />
+          <span className="btn-label">Export Report</span>
         </button>
         <ul className="footer-links">
           <li>
