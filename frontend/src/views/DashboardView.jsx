@@ -61,10 +61,15 @@ export default function DashboardView() {
             <h3 className="card-title !mb-0">Live Camera Feed</h3>
             <span className="live-indicator">LIVE</span>
           </div>
-          <div className="camera-placeholder">
-            {/* Using a solid color or gradient for mockup */}
-            <div className="camera-zone zone-a">ZONE A</div>
-            <div className="camera-zone zone-b">ZONE B</div>
+          <div className="camera-placeholder" style={{ padding: 0 }}>
+            <video 
+              src="/test_tracked.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
         </div>
 

@@ -9,6 +9,7 @@ import InventoryView from './views/InventoryView';
 import HeatmapView from './views/HeatmapView';
 import SettingsView from './views/SettingsView';
 import StaffingView from './views/StaffingView';
+import NvrView from './views/NvrView';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="heatmaps" element={<HeatmapView />} />
           <Route path="settings" element={<SettingsView />} />
           <Route path="staffing" element={<StaffingView />} />
+          <Route path="nvr" element={<NvrView />} />
           {/* Catch-all for non-implemented sidebar links */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
