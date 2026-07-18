@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { TrendingUp, TrendingDown, Clock, Users, Camera } from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import './DashboardView.css';
 import { DataContext } from '../components/DataContext';
 
@@ -241,13 +241,40 @@ export default function DashboardView() {
         </div>
 
         <div className="card">
-          <h3 className="card-title">Peak Engagement Periods</h3>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="card-title !mb-0">Peak Engagement Periods</h3>
+            <span className="badge badge-primary">
+              {(() => {
+                const peakHourItem = peakData.reduce((max, p) => p.val > max.val ? p : max, peakData[0]);
+                return peakHourItem.val > 0 ? `Peak: ${peakHourItem.time}` : "No Peak";
+              })()}
+            </span>
+          </div>
           <div className="h-64 mt-4">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={peakData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
-                <Area type="monotone" dataKey="val" stroke="#2563eb" fill="rgba(37, 99, 235, 0.1)" strokeWidth={4} />
+                <defs>
+                  <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#2563eb" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#2563eb" stopOpacity={0.0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+                <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 10 }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 10 }} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'var(--color-bg-surface)', border: '1px solid var(--color-border)', borderRadius: '8px' }}
+                  labelStyle={{ color: 'var(--color-text-primary)', fontWeight: 'bold' }}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="val" 
+                  stroke="#2563eb" 
+                  fill="url(#colorVal)" 
+                  strokeWidth={3} 
+                  dot={{ r: 5, stroke: '#2563eb', strokeWidth: 2, fill: '#fff' }}
+                  activeDot={{ r: 7 }}
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -268,15 +295,16 @@ export default function DashboardView() {
           </div>
         </div>
 
-        <div className="card">
-          <h3 className="card-title">Shelf Popularity Comparison</h3>
-          <div className="mt-4 overflow-x-auto">
+        <div className="card flex flex-col">
+          <h3 className="card-title mb-2">Shelf Popularity Comparison</h3>
+          <div className="flex-1 overflow-y-auto pr-1" style={{ maxHeight: '200px' }}>
             <table className="w-full text-left">
               <thead>
-                <tr className="text-secondary text-sm border-b">
+                <tr className="text-secondary text-sm border-b sticky top-0 bg-white z-10">
                   <th className="pb-3">SHELF / ZONE</th>
                   <th className="pb-3 text-right">VISITS</th>
                   <th className="pb-3 text-right">SHARE (%)</th>
+                  <th className="pb-3 text-left pl-6">SHARE BAR</th>
                   <th className="pb-3 text-center">ENGAGEMENT</th>
                 </tr>
               </thead>
@@ -287,18 +315,26 @@ export default function DashboardView() {
                     const share = Math.round((visits / (totalVisitors || 17)) * 100);
                     let badgeClass = "badge-primary";
                     let badgeLabel = "High";
+                    let barColorClass = "bg-primary";
                     if (visits < 3) {
                       badgeClass = "badge-danger";
                       badgeLabel = "Low";
+                      barColorClass = "bg-danger";
                     } else if (visits < 8) {
                       badgeClass = "badge-success";
                       badgeLabel = "Medium";
+                      barColorClass = "bg-success";
                     }
                     return (
                       <tr key={zoneName} className="border-b last:border-b-0">
                         <td className="py-3 font-medium">{zoneName}</td>
                         <td className="py-3 text-right font-bold text-primary">{visits}</td>
-                        <td className="py-3 text-right">{share}%</td>
+                        <td className="py-3 text-right font-semibold">{share}%</td>
+                        <td className="py-3 text-left pl-6 w-32">
+                          <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+                            <div className={`h-full rounded-full ${barColorClass}`} style={{ width: `${share}%` }}></div>
+                          </div>
+                        </td>
                         <td className="py-3 text-center">
                           <span className={`badge ${badgeClass}`}>{badgeLabel}</span>
                         </td>
@@ -307,6 +343,9 @@ export default function DashboardView() {
                   })}
               </tbody>
             </table>
+          </div>
+          <div className="text-center text-xs text-secondary mt-2 border-t pt-2 border-dashed">
+            * Scroll table to view more shelf zones
           </div>
         </div>
       </div>
