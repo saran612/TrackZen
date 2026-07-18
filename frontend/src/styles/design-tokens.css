@@ -62,11 +62,16 @@
 }
 
 :root[data-theme='dark'] {
-  --color-bg-app: #0f172a;
-  --color-bg-surface: #1e293b;
+  --color-bg-app: #121212;
+  --color-bg-surface: #1e1e1e;
   --color-text-primary: #f8fafc;
   --color-text-secondary: #94a3b8;
   --color-text-muted: #64748b;
-  --color-border: #334155;
-  --color-border-light: #1e293b;
+  --color-border: #2d2d2d;
+  --color-border-light: #1e1e1e;
+  --color-primary-light: rgba(59, 130, 246, 0.1);
+  --color-primary-subtle: rgba(59, 130, 246, 0.2);
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-warning-bg: rgba(245, 158, 11, 0.15);
+  --color-danger-bg: rgba(239, 68, 68, 0.1);
 }

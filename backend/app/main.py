@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.v1.api import api_router
@@ -10,6 +10,13 @@ from app import models
 from app.services.analytics import calculate_engagement_score
 from datetime import datetime, timedelta
 import random
+import cv2
+import numpy as np
+import base64
+from ultralytics import YOLO
+
+# Pre-load YOLO pose model for real-time live feed processing
+live_model = YOLO("yolo11n-pose.pt")
 
 
 @asynccontextmanager
@@ -44,7 +51,7 @@ async def lifespan(app: FastAPI):
             
             # Prepopulate mock DwellSessions with different engagement scores
             added_zones = db.query(models.Zone).all()
-            for i in range(1, 26):  # 25 visitors
+            for i in range(1, 18):  # 17 visitors
                 zone = random.choice(added_zones)
                 dwell_time = round(random.uniform(5.0, 120.0), 1)  # 5s to 2min
                 proximity = round(random.uniform(0.3, 0.95), 2)
@@ -94,3 +101,40 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 @app.get("/health", tags=["health"])
 def health_check():
     return {"status": "healthy", "project": settings.PROJECT_NAME}
+
+@app.websocket("/api/v1/live-feed")
+async def live_feed_websocket(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            # Receive base64 frame from client
+            data = await websocket.receive_text()
+            if not data:
+                continue
+            
+            if "," in data:
+                header, encoded = data.split(",", 1)
+            else:
+                encoded = data
+                
+            img_bytes = base64.b64decode(encoded)
+            nparr = np.frombuffer(img_bytes, np.uint8)
+            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            
+            if img is not None:
+                # Run YOLO pose model on the live frame
+                results = live_model(img, verbose=False)
+                
+                # Plot/annotate detections on the image
+                annotated_img = results[0].plot()
+                
+                # Encode back to JPEG base64
+                _, buffer = cv2.imencode(".jpg", annotated_img)
+                jpg_as_text = base64.b64encode(buffer).decode("utf-8")
+                
+                # Send back the base64 JPEG
+                await websocket.send_text(f"data:image/jpeg;base64,{jpg_as_text}")
+    except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        print(f"WebSocket live-feed error: {e}")

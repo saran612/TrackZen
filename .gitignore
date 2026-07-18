@@ -35,3 +35,13 @@ dist/
 # Ignore backend models and datasets
 backend/models/
 backend/outputs
+
+# Local runner logs
+*.log
+
+# Ignore large binary files
+*.pt
+backend/trackzen.db
+frontend/public/full_video.mp4
+frontend/public/picking_and_returning_tracked.mp4
+frontend/public/test_tracked.mp4

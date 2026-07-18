@@ -22,7 +22,7 @@
 }
 
 .toggle-btn.active {
-  background-color: white;
+  background-color: var(--color-bg-surface);
   color: var(--color-primary-dark);
   box-shadow: var(--shadow-sm);
 }
@@ -30,8 +30,8 @@
 .heatmap-area {
   min-height: 460px;
   position: relative;
-  background-color: #f1f5f9;
-  background-image: url('/store-blueprint.png');
+  background-color: var(--color-bg-app);
+  background-image: url('/blueprint.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,7 +63,7 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background-color: white;
+  background-color: var(--color-bg-surface);
   color: var(--color-primary-dark);
   border: 2px solid var(--color-primary-dark);
   border-radius: 50%;

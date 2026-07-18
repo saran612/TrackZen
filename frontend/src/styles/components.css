@@ -214,3 +214,10 @@
 .p-0 { padding: 0; }
 .p-1 { padding: var(--spacing-1); }
 .border-collapse { border-collapse: collapse; }
+
+/* Dark Mode Helper Overrides */
+:root[data-theme='dark'] .bg-white { background-color: var(--color-bg-surface); }
+:root[data-theme='dark'] .bg-gray-50 { background-color: var(--color-bg-app); }
+:root[data-theme='dark'] .bg-orange-100 { background-color: rgba(249, 115, 22, 0.15); }
+:root[data-theme='dark'] .border-gray-300 { border-color: var(--color-border); }
+

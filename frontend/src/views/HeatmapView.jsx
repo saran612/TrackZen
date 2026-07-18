@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, Filter, ChevronDown, Flame, Snowflake, GitMerge, Clock } from 'lucide-react';
 import './HeatmapView.css';
 
 export default function HeatmapView() {
+  const [activeTab, setActiveTab] = useState('traffic');
+
   return (
     <div className="heatmap-view flex flex-col gap-6">
       
@@ -14,7 +16,7 @@ export default function HeatmapView() {
         </div>
         <div className="flex gap-4">
           <button className="btn btn-outline flex items-center gap-2 bg-white">
-            <Calendar size={16} /> Last 7 Days <ChevronDown size={16} />
+            <Calendar size={16} /> 09-02-2025 <ChevronDown size={16} />
           </button>
           <button className="btn btn-outline flex items-center gap-2 bg-white">
             <Filter size={16} /> All Zones <ChevronDown size={16} />
@@ -30,14 +32,34 @@ export default function HeatmapView() {
           {/* Heatmap Card Header */}
           <div className="flex justify-between items-center p-4 border-b border-gray-100 bg-white">
             <div className="toggle-group flex bg-primary-light p-1 rounded-md">
-              <button className="toggle-btn active">Traffic Volume</button>
-              <button className="toggle-btn text-secondary">Avg Dwell Time</button>
+              <button 
+                className={`toggle-btn ${activeTab === 'traffic' ? 'active' : 'text-secondary'}`}
+                onClick={() => setActiveTab('traffic')}
+              >
+                Traffic Volume
+              </button>
+              <button 
+                className={`toggle-btn ${activeTab === 'dwell' ? 'active' : 'text-secondary'}`}
+                onClick={() => setActiveTab('dwell')}
+              >
+                Avg Dwell Time
+              </button>
             </div>
             
             <div className="flex items-center gap-4 text-sm font-medium">
-              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-danger"></span> High</div>
-              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-warning"></span> Med</div>
-              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-success"></span> Low</div>
+              {activeTab === 'traffic' ? (
+                <>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-danger"></span> High</div>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-warning"></span> Med</div>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-success"></span> Low</div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#6366f1' }}></span> Long Dwell</div>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#3b82f6' }}></span> Mid Dwell</div>
+                  <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#10b981' }}></span> Short Dwell</div>
+                </>
+              )}
             </div>
           </div>
           
@@ -47,12 +69,24 @@ export default function HeatmapView() {
              <div className="floorplan-mockup w-full h-full absolute inset-0 opacity-20"></div>
              
              {/* Heat spots */}
-             <div className="heat-spot spot-high" style={{ left: '50%', top: '70%', width: '180px', height: '140px' }}></div>
-             <div className="heat-spot spot-medium" style={{ left: '40%', top: '40%', width: '120px', height: '180px' }}></div>
-             <div className="heat-spot spot-low" style={{ left: '20%', top: '20%', width: '200px', height: '150px' }}></div>
-             <div className="heat-spot spot-high" style={{ left: '60%', top: '80%', width: '250px', height: '100px' }}></div>
-             <div className="heat-spot spot-medium" style={{ left: '70%', top: '30%', width: '140px', height: '140px' }}></div>
-             <div className="heat-spot spot-low" style={{ left: '15%', top: '60%', width: '100px', height: '100px' }}></div>
+             {activeTab === 'traffic' ? (
+               <>
+                 <div className="heat-spot spot-high" style={{ left: '50%', top: '70%', width: '180px', height: '140px' }}></div>
+                 <div className="heat-spot spot-medium" style={{ left: '40%', top: '40%', width: '120px', height: '180px' }}></div>
+                 <div className="heat-spot spot-low" style={{ left: '20%', top: '20%', width: '200px', height: '150px' }}></div>
+                 <div className="heat-spot spot-high" style={{ left: '60%', top: '80%', width: '250px', height: '100px' }}></div>
+                 <div className="heat-spot spot-medium" style={{ left: '70%', top: '30%', width: '140px', height: '140px' }}></div>
+                 <div className="heat-spot spot-low" style={{ left: '15%', top: '60%', width: '100px', height: '100px' }}></div>
+               </>
+             ) : (
+               <>
+                 <div className="heat-spot" style={{ left: '30%', top: '35%', width: '160px', height: '160px', backgroundColor: 'rgba(99, 102, 241, 0.6)', filter: 'blur(35px)' }}></div>
+                 <div className="heat-spot" style={{ left: '60%', top: '25%', width: '150px', height: '150px', backgroundColor: 'rgba(59, 130, 246, 0.55)', filter: 'blur(35px)' }}></div>
+                 <div className="heat-spot" style={{ left: '50%', top: '65%', width: '200px', height: '120px', backgroundColor: 'rgba(99, 102, 241, 0.6)', filter: 'blur(35px)' }}></div>
+                 <div className="heat-spot" style={{ left: '75%', top: '60%', width: '110px', height: '110px', backgroundColor: 'rgba(16, 185, 129, 0.55)', filter: 'blur(30px)' }}></div>
+                 <div className="heat-spot" style={{ left: '25%', top: '70%', width: '130px', height: '130px', backgroundColor: 'rgba(59, 130, 246, 0.55)', filter: 'blur(35px)' }}></div>
+               </>
+             )}
              
              {/* Icons over heatmap */}
              <div className="heatmap-icon" style={{ left: '35%', top: '45%' }}><Clock size={16} /></div>
@@ -63,14 +97,13 @@ export default function HeatmapView() {
 
         {/* Right Column: Stats Sidebar */}
         <div className="flex flex-col gap-6">
-          
-          {/* Busiest Aisle Card */}
+                    {/* Busiest Zone Card */}
           <div className="card border-t-4 border-t-primary">
             <div className="flex items-center gap-2 mb-4">
               <Flame size={20} className="text-primary" />
-              <h3 className="font-bold text-primary-dark text-lg">Busiest Aisle</h3>
+              <h3 className="font-bold text-primary-dark text-lg">Busiest Zone</h3>
             </div>
-            <h2 className="text-2xl font-bold mb-2">Aisle 4 - Snacks</h2>
+            <h2 className="text-2xl font-bold mb-2">Snacks</h2>
             <p className="text-sm text-secondary mb-6">Accounts for 22% of total store foot traffic today.</p>
             <div className="progress-bar-container">
               <div className="progress-bar-fill bg-orange-600" style={{ width: '22%' }}></div>
@@ -89,7 +122,7 @@ export default function HeatmapView() {
             
             <div className="flex flex-col gap-4">
               <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                <span className="text-secondary text-sm">Aisle 12 - Spices</span>
+                <span className="text-secondary text-sm">Spices</span>
                 <span className="font-bold text-sm">3.2%</span>
               </div>
               <div className="flex justify-between items-center pb-2 border-b border-gray-100">

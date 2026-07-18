@@ -4,9 +4,9 @@ import './InventoryView.css';
 
 const skuData = [
   {
-    id: 'BEV-8492-DR',
-    product: 'Organic Dark Roast 12oz',
-    zone: 'Aisle 4, Shelf 2',
+    id: 'BEV-COF-12',
+    product: 'Premium Coffee Roast 12oz',
+    zone: 'Beverages',
     attention: 98,
     attentionTrend: 'up',
     attentionLabel: 'Very High',
@@ -18,9 +18,9 @@ const skuData = [
     actionType: 'outline'
   },
   {
-    id: 'HW-32-BLK',
-    product: 'HydroFlask 32oz Black',
-    zone: 'Endcap B',
+    id: 'OIL-CAN-2L',
+    product: 'Organic Canola Oil 2L',
+    zone: 'Cooking Oil',
     attention: 74,
     attentionTrend: 'none',
     attentionLabel: 'High',
@@ -32,15 +32,43 @@ const skuData = [
     actionType: 'primary'
   },
   {
-    id: 'EL-USB-2M',
-    product: 'USB-C Cable 2m Basic',
-    zone: 'Aisle 8, Bin 3',
+    id: 'SNK-CHP-BBQ',
+    product: 'Potato Chips BBQ 150g',
+    zone: 'Snacks',
+    attention: 85,
+    attentionTrend: 'up',
+    attentionLabel: 'High',
+    velocity: 9.1,
+    velocityTrend: 'High',
+    stock: 64,
+    stockTrend: 'flat',
+    action: 'OK',
+    actionType: 'outline'
+  },
+  {
+    id: 'STN-NOT-A5',
+    product: 'Lined Notebook A5',
+    zone: 'Stationery',
     attention: 22,
-    attentionTrend: 'none',
+    attentionTrend: 'down',
     attentionLabel: 'Low',
-    velocity: 4.1,
+    velocity: 1.0,
+    velocityTrend: 'Low',
+    stock: 95,
+    stockTrend: 'flat',
+    action: 'Investigate',
+    actionType: 'outline'
+  },
+  {
+    id: 'SPC-CIN-50',
+    product: 'Ground Cinnamon 50g',
+    zone: 'Spices',
+    attention: 34,
+    attentionTrend: 'none',
+    attentionLabel: 'Medium',
+    velocity: 4.8,
     velocityTrend: 'Steady',
-    stock: 88,
+    stock: 45,
     stockTrend: 'flat',
     action: 'OK',
     actionType: 'outline'
