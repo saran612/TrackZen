@@ -69,60 +69,24 @@ LayerTechnologyNotesObject DetectionYOLOv11n (Ultralytics)Pretrained on COCO, pe
 
 System Architecture
 
-#mermaid-r1ac-r1 { font-family: "Anthropic Sans", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; fill: rgb(229, 229, 229); }
-#mermaid-r1ac-r1 .edge-animation-slow { stroke-dashoffset: 900; animation: 50s linear 0s infinite normal none running dash; stroke-linecap: round; stroke-dasharray: 9, 5 !important; }
-#mermaid-r1ac-r1 .edge-animation-fast { stroke-dashoffset: 900; animation: 20s linear 0s infinite normal none running dash; stroke-linecap: round; stroke-dasharray: 9, 5 !important; }
-#mermaid-r1ac-r1 .error-icon { fill: rgb(204, 120, 92); }
-#mermaid-r1ac-r1 .error-text { fill: rgb(51, 135, 163); stroke: rgb(51, 135, 163); }
-#mermaid-r1ac-r1 .edge-thickness-normal { stroke-width: 1px; }
-#mermaid-r1ac-r1 .edge-thickness-thick { stroke-width: 3.5px; }
-#mermaid-r1ac-r1 .edge-pattern-solid { stroke-dasharray: 0; }
-#mermaid-r1ac-r1 .edge-thickness-invisible { stroke-width: 0; fill: none; }
-#mermaid-r1ac-r1 .edge-pattern-dashed { stroke-dasharray: 3; }
-#mermaid-r1ac-r1 .edge-pattern-dotted { stroke-dasharray: 2; }
-#mermaid-r1ac-r1 .marker { fill: rgb(161, 161, 161); stroke: rgb(161, 161, 161); }
-#mermaid-r1ac-r1 .marker.cross { stroke: rgb(161, 161, 161); }
-#mermaid-r1ac-r1 svg { font-family: "Anthropic Sans", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; }
-#mermaid-r1ac-r1 p { margin: 0px; }
-#mermaid-r1ac-r1 .label { font-family: "Anthropic Sans", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: rgb(229, 229, 229); }
-#mermaid-r1ac-r1 .cluster-label text { fill: rgb(51, 135, 163); }
-#mermaid-r1ac-r1 .cluster-label span { color: rgb(51, 135, 163); }
-#mermaid-r1ac-r1 .cluster-label span p { background-color: transparent; }
-#mermaid-r1ac-r1 .label text, #mermaid-r1ac-r1 span { fill: rgb(229, 229, 229); color: rgb(229, 229, 229); }
-#mermaid-r1ac-r1 .node rect, #mermaid-r1ac-r1 .node circle, #mermaid-r1ac-r1 .node ellipse, #mermaid-r1ac-r1 .node polygon, #mermaid-r1ac-r1 .node path { fill: transparent; stroke: rgb(161, 161, 161); stroke-width: 1px; }
-#mermaid-r1ac-r1 .rough-node .label text, #mermaid-r1ac-r1 .node .label text, #mermaid-r1ac-r1 .image-shape .label, #mermaid-r1ac-r1 .icon-shape .label { text-anchor: middle; }
-#mermaid-r1ac-r1 .node .katex path { fill: rgb(0, 0, 0); stroke: rgb(0, 0, 0); stroke-width: 1px; }
-#mermaid-r1ac-r1 .rough-node .label, #mermaid-r1ac-r1 .node .label, #mermaid-r1ac-r1 .image-shape .label, #mermaid-r1ac-r1 .icon-shape .label { text-align: center; }
-#mermaid-r1ac-r1 .node.clickable { cursor: pointer; }
-#mermaid-r1ac-r1 .root .anchor path { stroke-width: 0; stroke: rgb(161, 161, 161); fill: rgb(161, 161, 161) !important; }
-#mermaid-r1ac-r1 .arrowheadPath { fill: rgb(11, 11, 11); }
-#mermaid-r1ac-r1 .edgePath .path { stroke: rgb(161, 161, 161); stroke-width: 1px; }
-#mermaid-r1ac-r1 .flowchart-link { stroke: rgb(161, 161, 161); fill: none; }
-#mermaid-r1ac-r1 .edgeLabel { background-color: transparent; text-align: center; }
-#mermaid-r1ac-r1 .edgeLabel p { background-color: transparent; }
-#mermaid-r1ac-r1 .edgeLabel rect { opacity: 0.5; background-color: transparent; fill: transparent; }
-#mermaid-r1ac-r1 .labelBkg { background-color: rgba(0, 0, 0, 0.5); }
-#mermaid-r1ac-r1 .cluster rect { fill: rgb(204, 120, 92); stroke: rgb(138, 115, 107); stroke-width: 1px; }
-#mermaid-r1ac-r1 .cluster text { fill: rgb(51, 135, 163); }
-#mermaid-r1ac-r1 .cluster span { color: rgb(51, 135, 163); }
-#mermaid-r1ac-r1 div.mermaidTooltip { position: absolute; text-align: center; max-width: 200px; padding: 2px; font-family: "Anthropic Sans", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 12px; background: rgb(204, 120, 92); border: 1px solid rgb(138, 115, 107); border-radius: 2px; pointer-events: none; z-index: 100; }
-#mermaid-r1ac-r1 .flowchartTitleText { text-anchor: middle; font-size: 18px; fill: rgb(229, 229, 229); }
-#mermaid-r1ac-r1 rect.text { fill: none; stroke-width: 0; }
-#mermaid-r1ac-r1 .icon-shape, #mermaid-r1ac-r1 .image-shape { background-color: transparent; text-align: center; }
-#mermaid-r1ac-r1 .icon-shape p, #mermaid-r1ac-r1 .image-shape p { background-color: transparent; padding: 2px; }
-#mermaid-r1ac-r1 .icon-shape .label rect, #mermaid-r1ac-r1 .image-shape .label rect { opacity: 0.5; background-color: transparent; fill: transparent; }
-#mermaid-r1ac-r1 .label-icon { display: inline-block; height: 1em; overflow: visible; vertical-align: -0.125em; }
-#mermaid-r1ac-r1 .node .label-icon path { fill: currentcolor; stroke: revert; stroke-width: revert; }
-#mermaid-r1ac-r1 .node .neo-node { stroke: rgb(161, 161, 161); }
-#mermaid-r1ac-r1 [data-look="neo"].node rect, #mermaid-r1ac-r1 [data-look="neo"].cluster rect, #mermaid-r1ac-r1 [data-look="neo"].node polygon { stroke: url("#mermaid-r1ac-r1-gradient"); filter: drop-shadow(rgb(185, 185, 185) 1px 2px 2px); }
-#mermaid-r1ac-r1 [data-look="neo"].node path { stroke: url("#mermaid-r1ac-r1-gradient"); stroke-width: 1px; }
-#mermaid-r1ac-r1 [data-look="neo"].node .outer-path { filter: drop-shadow(rgb(185, 185, 185) 1px 2px 2px); }
-#mermaid-r1ac-r1 [data-look="neo"].node .neo-line path { stroke: rgb(161, 161, 161); filter: none; }
-#mermaid-r1ac-r1 [data-look="neo"].node circle { stroke: url("#mermaid-r1ac-r1-gradient"); filter: drop-shadow(rgb(185, 185, 185) 1px 2px 2px); }
-#mermaid-r1ac-r1 [data-look="neo"].node circle .state-start { fill: rgb(0, 0, 0); }
-#mermaid-r1ac-r1 [data-look="neo"].icon-shape .icon { fill: url("#mermaid-r1ac-r1-gradient"); filter: drop-shadow(rgb(185, 185, 185) 1px 2px 2px); }
-#mermaid-r1ac-r1 [data-look="neo"].icon-shape .icon-neo path { stroke: url("#mermaid-r1ac-r1-gradient"); filter: drop-shadow(rgb(185, 185, 185) 1px 2px 2px); }
-#mermaid-r1ac-r1 :root { --mermaid-font-family: "Anthropic Sans",system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }CCTV Video InputYOLOv11n PersonDetectionByteTrack Multi-ObjectTrackingZone Polygon Mappingrack_id lookupTouch DetectionHand Keypoints +ProximityGaze EstimationHead Pose solvePnPAction RecognitionX3D / I3D on persontrackletsInteraction State MachineNo Interaction / Dwell /Examining / InteractionEngagement ScoreCalculationPostgreSQLevents + aggregatesFastAPI Analytics APIReact Dashboard —TrackZenCSV Exportper unique_id x rack_id
+```mermaid
+graph TD
+    A[CCTV Video Input] --> B[YOLOv11n Person Detection]
+    B --> C[ByteTrack Multi-Object Tracking]
+    C --> D[Zone Polygon Mapping & rack_id Lookup]
+    D --> E[Touch Detection <br> Hand Keypoints + Proximity]
+    D --> F[Gaze Estimation <br> Head Pose solvePnP]
+    D --> G[Action Recognition <br> X3D/I3D on Tracklets]
+    E --> H[Interaction State Machine <br> No Interaction / Dwell / Examining / Interaction]
+    F --> H
+    G --> H
+    H --> I[Engagement Score Calculation]
+    I --> J[(PostgreSQL database <br> Events & Aggregates)]
+    J --> K[FastAPI Analytics API]
+    K --> L[React Dashboard - TrackZen]
+    K --> M[CSV / JSON Exports]
+```
+
 
 Design principle: detection and tracking run once per frame; every downstream module
 (zones, touch, gaze, action recognition, state machine, scoring) consumes tracked person data
@@ -132,69 +96,34 @@ testable.
 
 Project Structure
 
-trackzen/
-├── cv-pipeline/
-│   ├── detection/
-│   │   └── yolo_detector.py          # YOLOv11n wrapper
-│   ├── tracking/
-│   │   └── byte_tracker.py           # ByteTrack integration, ID persistence
-│   ├── zones/
-│   │   ├── shelf_zones.json          # rack_id -> polygon coordinates
-│   │   └── zone_utils.py             # point-in-polygon, homography projection
-│   ├── touch/
-│   │   └── touch_detector.py         # hand keypoints + proximity heuristic
-│   ├── gaze/
-│   │   └── head_pose.py              # solvePnP yaw/pitch/roll + shelf projection
-│   ├── action_recognition/
-│   │   ├── model.py                  # X3D/I3D fine-tuning + inference
-│   │   └── train.py                  # transfer learning script (40-clip dataset)
-│   ├── state_machine/
-│   │   └── interaction_state.py      # No Interaction / Dwell / Examining / Interaction
-│   ├── scoring/
-│   │   └── engagement_score.py       # weighted engagement formula
-│   └── export/
-│       └── csv_exporter.py           # per unique_id x rack_id CSV + JSON logs
+TrackZen/
+├── backend/
+│   ├── app/                          # FastAPI core application
+│   │   ├── api/v1/                   # REST API routes (analytics overview/sessions)
+│   │   ├── core/                     # config settings
+│   │   ├── db/                       # SQLAlchemy sessions
+│   │   └── models/                   # DB model definitions
+│   ├── models/                       # YOLO models & test clips
+│   ├── outputs/                      # annotated output video & state JSON exports
+│   ├── scratch/                      # wrist keypoint & gaze test scripts
+│   ├── tracking_pipeline.py          # YOLOv11 + ByteTrack pipeline
+│   ├── touch_detection.py            # wrist keypoint proximity touch engine
+│   ├── gaze_estimation.py            # solvePnP head orientation direction proxy
+│   ├── state_machine.py              # ShopperStateMachine with transition logic
+│   ├── analytics_engine.py           # cumulative session aggregates & metrics
+│   ├── test_pipeline.py              # validation test runner
+│   └── trackzen.db                   # SQLite store
 │
-├── api/
-│   ├── main.py                       # FastAPI app entrypoint
-│   ├── routers/
-│   │   ├── shelves.py
-│   │   ├── engagement.py
-│   │   ├── live.py
-│   │   └── reports.py
-│   ├── models/                       # SQLAlchemy ORM models
-│   └── db.py
-│
-├── dashboard/
+├── frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── PeakEngagementChart.jsx
-│   │   │   ├── ShelfPopularityTable.jsx
-│   │   │   ├── LiveCameraFeed.jsx
-│   │   │   ├── TrafficHeatmap.jsx
-│   │   │   └── StateLegend.jsx
-│   │   ├── pages/
-│   │   │   ├── Overview.jsx
-│   │   │   ├── Engagement.jsx
-│   │   │   ├── LiveView.jsx
-│   │   │   ├── Heatmaps.jsx
-│   │   │   └── Inventory.jsx
-│   │   └── App.jsx
-│   └── vite.config.js
-│
-├── configs/
-│   ├── promo_zones.json
-│   └── pipeline_config.yaml
-│
-├── data/
-│   ├── raw/                          # Hafidz 2 Store labeled clips
-│   ├── processed/
-│   └── output/
-│       ├── analytics_master.csv
-│       └── per_clip_json/
-│
-├── docker-compose.yml
-├── requirements.txt
+│   │   ├── components/               # DataContext.jsx, Sidebar.jsx, TopNav.jsx
+│   │   ├── views/                    # DashboardView, AnalyticsView, NvrView, HeatmapView
+│   │   ├── App.jsx                   # React Router configurations
+│   │   └── main.jsx                  # React entry point
+│   ├── public/                       # static assets (blueprint.jpeg, picking_and_returning_tracked.mp4)
+│   ├── package.json                  # React dependencies list
+│   └── vite.config.js                # Vite build options
+├── .start.sh                         # script to stop/start backend & frontend uvicorn/vite servers
 └── README.md
 
 
