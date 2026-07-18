@@ -40,11 +40,17 @@
     color: var(--color-text-primary);
 }
 
+.nvr-header {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
 .nvr-select {
     padding: 6px 12px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    background-color: white;
+    background-color: var(--color-bg-surface);
     font-size: var(--font-size-sm);
     color: var(--color-text-primary);
     font-weight: 600;
@@ -154,4 +160,65 @@
 .side-cams-container::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: var(--radius-full);
+}
+
+/* Custom player controls overlay */
+.nvr-player-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: var(--spacing-4) var(--spacing-6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.main-cam-container:hover .nvr-player-overlay {
+    opacity: 1;
+}
+
+.nvr-player-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.time-display {
+    font-size: var(--font-size-xs);
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.timeline-slider {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.timeline-slider:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.timeline-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+}
+
+.timeline-slider::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
 }

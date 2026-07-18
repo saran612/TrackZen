@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Calendar, ChevronDown, Users, ShoppingCart } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import './AnalyticsView.css';
+import { DataContext } from '../components/DataContext';
 
 const trafficData = [
-  { name: 'Oct 1', traffic: 2000, conversion: 800 },
-  { name: 'Oct 8', traffic: 4500, conversion: 2000 },
-  { name: 'Oct 15', traffic: 5000, conversion: 3000 },
-  { name: 'Oct 22', traffic: 8000, conversion: 5500 },
-  { name: 'Oct 31', traffic: 9000, conversion: 6000 },
+  { name: '09-02-2025', traffic: 17, conversion: 5 },
+  { name: 'Other Days', traffic: 0, conversion: 0 },
 ];
 
 const conversionByCategoryData = [
-  { name: 'Electronics', current: 30, previous: 25 },
-  { name: 'Apparel', current: 15, previous: 18 },
-  { name: 'Home', current: 22, previous: 12 },
-  { name: 'Seasonal', current: 35, previous: 33 },
+  { name: 'Beverages', current: 62, previous: 58 },
+  { name: 'Snacks', current: 48, previous: 45 },
+  { name: 'Cooking Oil', current: 33, previous: 30 },
+  { name: 'Stationery', current: 10, previous: 15 },
 ];
 
 export default function AnalyticsView() {
+  const { totalVisitors, avgDwellTime, totalDwellTime, avgEngagement } = useContext(DataContext);
+
   return (
     <div className="analytics-view flex flex-col gap-6">
       
@@ -30,7 +30,7 @@ export default function AnalyticsView() {
         </div>
         <div className="flex gap-4">
           <button className="btn btn-outline flex items-center gap-2 bg-white">
-            <Calendar size={16} /> Oct 1 - Oct 31, 2023
+            <Calendar size={16} /> 09-02-2025
           </button>
           <button className="btn btn-outline flex items-center gap-2 bg-white">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> All Segments <ChevronDown size={16} />
@@ -54,10 +54,10 @@ export default function AnalyticsView() {
               <LineChart data={trafficData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#6b7280', fontSize: 12}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#6b7280', fontSize: 12}} tickFormatter={(value) => value >= 1000 ? `${value/1000}k` : value} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#6b7280', fontSize: 12}} />
                 <Tooltip />
-                <Line type="monotone" dataKey="traffic" stroke="#2563eb" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="conversion" stroke="#6366f1" strokeWidth={2} strokeDasharray="5 5" dot={false} />
+                <Line type="monotone" dataKey="traffic" stroke="#2563eb" strokeWidth={2} dot={true} />
+                <Line type="monotone" dataKey="conversion" stroke="#6366f1" strokeWidth={2} strokeDasharray="5 5" dot={true} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -73,11 +73,11 @@ export default function AnalyticsView() {
               <h3 className="card-subtitle !mb-0">Total Dwell Time</h3>
             </div>
             <div className="flex items-baseline gap-2 mb-2">
-              <h2 className="text-4xl font-bold">1,402</h2>
-              <span className="text-secondary font-medium">hours</span>
+              <h2 className="text-4xl font-bold">{Math.round(totalDwellTime)}</h2>
+              <span className="text-secondary font-medium">seconds</span>
             </div>
             <div>
-              <span className="badge badge-success">&uarr; 12.5% vs last mo</span>
+              <span className="badge badge-success">Date: 09-02-2025</span>
             </div>
           </div>
           
@@ -86,14 +86,14 @@ export default function AnalyticsView() {
               <div className="icon-badge bg-indigo-100 text-indigo-600">
                 <ShoppingCart size={24} />
               </div>
-              <h3 className="card-subtitle !mb-0">Avg. Conversion Rate</h3>
+              <h3 className="card-subtitle !mb-0">Avg. Engagement</h3>
             </div>
             <div className="flex items-baseline gap-2 mb-2">
-              <h2 className="text-4xl font-bold">24.8</h2>
-              <span className="text-secondary font-medium">%</span>
+              <h2 className="text-4xl font-bold">{avgEngagement}</h2>
+              <span className="text-secondary font-medium">score</span>
             </div>
             <div>
-              <span className="badge badge-danger">&darr; 2.1% vs last mo</span>
+              <span className="badge badge-success">Date: 09-02-2025</span>
             </div>
           </div>
         </div>
@@ -103,69 +103,60 @@ export default function AnalyticsView() {
       <div className="analytics-grid-bottom">
         <div className="card">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="card-title !mb-0">Engagement by Aisle & Hour</h3>
+            <h3 className="card-title !mb-0">Engagement by Aisle & Hour (09-02-2025)</h3>
             <button className="text-primary font-medium text-sm flex items-center gap-1">Details &gt;</button>
           </div>
-          <p className="text-xs text-secondary mb-4">Avg. customers per hour by zone</p>
+          <p className="text-xs text-secondary mb-4">Avg. customers per hour by zone (1 PM & 2 PM alone non-zero)</p>
           
           <div className="heatmap-table-wrapper">
             <table className="heatmap-grid-table">
               <thead>
                 <tr>
                   <th className="heatmap-th-label"></th>
-                  <th className="heatmap-th">8 AM</th>
-                  <th className="heatmap-th">10 AM</th>
+                  <th className="heatmap-th">11 AM</th>
                   <th className="heatmap-th">12 PM</th>
+                  <th className="heatmap-th">1 PM</th>
                   <th className="heatmap-th">2 PM</th>
+                  <th className="heatmap-th">3 PM</th>
                   <th className="heatmap-th">4 PM</th>
-                  <th className="heatmap-th">6 PM</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="heatmap-row-label">Electronics</td>
-                  <td><div className="hm-cell hm-2">18</div></td>
-                  <td><div className="hm-cell hm-3">34</div></td>
-                  <td><div className="hm-cell hm-5">72</div></td>
-                  <td><div className="hm-cell hm-4">56</div></td>
-                  <td><div className="hm-cell hm-4">48</div></td>
-                  <td><div className="hm-cell hm-3">31</div></td>
+                  <td className="heatmap-row-label">Beverages</td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-5">8</div></td>
+                  <td><div className="hm-cell hm-4">6</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
                 </tr>
                 <tr>
-                  <td className="heatmap-row-label">Apparel</td>
-                  <td><div className="hm-cell hm-1">8</div></td>
-                  <td><div className="hm-cell hm-2">22</div></td>
-                  <td><div className="hm-cell hm-3">38</div></td>
-                  <td><div className="hm-cell hm-4">52</div></td>
-                  <td><div className="hm-cell hm-5">65</div></td>
-                  <td><div className="hm-cell hm-3">40</div></td>
+                  <td className="heatmap-row-label">Snacks</td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-4">5</div></td>
+                  <td><div className="hm-cell hm-3">4</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
                 </tr>
                 <tr>
-                  <td className="heatmap-row-label">Home Goods</td>
-                  <td><div className="hm-cell hm-2">15</div></td>
-                  <td><div className="hm-cell hm-4">45</div></td>
-                  <td><div className="hm-cell hm-2">20</div></td>
-                  <td><div className="hm-cell hm-1">12</div></td>
-                  <td><div className="hm-cell hm-2">19</div></td>
-                  <td><div className="hm-cell hm-1">10</div></td>
+                  <td className="heatmap-row-label">Cooking Oil</td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-2">3</div></td>
+                  <td><div className="hm-cell hm-2">2</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
                 </tr>
                 <tr>
-                  <td className="heatmap-row-label">Seasonal</td>
-                  <td><div className="hm-cell hm-1">5</div></td>
-                  <td><div className="hm-cell hm-2">14</div></td>
-                  <td><div className="hm-cell hm-5">68</div></td>
-                  <td><div className="hm-cell hm-4">50</div></td>
-                  <td><div className="hm-cell hm-3">35</div></td>
-                  <td><div className="hm-cell hm-2">18</div></td>
-                </tr>
-                <tr>
-                  <td className="heatmap-row-label">Checkout</td>
-                  <td><div className="hm-cell hm-1">10</div></td>
-                  <td><div className="hm-cell hm-2">20</div></td>
-                  <td><div className="hm-cell hm-4">55</div></td>
-                  <td><div className="hm-cell hm-3">42</div></td>
-                  <td><div className="hm-cell hm-5">78</div></td>
-                  <td><div className="hm-cell hm-5">70</div></td>
+                  <td className="heatmap-row-label">Stationery</td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-1">1</div></td>
+                  <td><div className="hm-cell hm-1">1</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
+                  <td><div className="hm-cell hm-0" style={{backgroundColor: 'transparent'}}>0</div></td>
                 </tr>
               </tbody>
             </table>
@@ -181,7 +172,7 @@ export default function AnalyticsView() {
 
         <div className="card">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="card-title !mb-0">Conversion by Category</h3>
+            <h3 className="card-title !mb-0">Conversion by Category (09-02-2025)</h3>
             <div className="flex gap-4 text-xs font-medium">
               <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-primary"></span> Current</span>
               <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gray-200"></span> Previous</span>

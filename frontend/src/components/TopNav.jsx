@@ -31,7 +31,6 @@ export default function TopNav({ onToggleSidebar }) {
         <Link to="/nvr" className="icon-btn" title="NVR Video Wall"><Video size={20} /></Link>
         <button className="icon-btn"><Calendar size={20} /></button>
         <button className="icon-btn"><Clock size={20} /></button>
-        <button className="icon-btn"><Settings size={20} /></button>
         <div className="avatar">
           <User size={20} />
         </div>
