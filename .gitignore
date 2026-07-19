@@ -31,3 +31,10 @@ dist/
 *.swp
 .DS_Store
 .gemini/
+
+# Media files
+*.mp4
+*.log
+*.avi
+*.zip
+list.txt

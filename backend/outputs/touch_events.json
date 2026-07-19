@@ -1,0 +1,42 @@
+{
+  "positive_clip": [
+    {
+      "track_id": 3,
+      "shelf_id": "Main Left Shelf",
+      "start_frame": 61,
+      "end_frame": 535,
+      "duration_frames": 474,
+      "duration_seconds": 31.28,
+      "hand_used": "Right"
+    }
+  ],
+  "negative_clip": [
+    {
+      "track_id": 1,
+      "shelf_id": "Main Left Shelf",
+      "start_frame": 87,
+      "end_frame": 109,
+      "duration_frames": 22,
+      "duration_seconds": 1.45,
+      "hand_used": "Right"
+    },
+    {
+      "track_id": 1,
+      "shelf_id": "Main Left Shelf",
+      "start_frame": 111,
+      "end_frame": 132,
+      "duration_frames": 21,
+      "duration_seconds": 1.39,
+      "hand_used": "Right"
+    },
+    {
+      "track_id": 1,
+      "shelf_id": "Main Left Shelf",
+      "start_frame": 136,
+      "end_frame": 269,
+      "duration_frames": 133,
+      "duration_seconds": 8.78,
+      "hand_used": "Right"
+    }
+  ]
+}
