@@ -1,0 +1,224 @@
+/* NVR Security Video Wall Styles */
+
+.nvr-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-danger);
+    border-radius: var(--radius-full);
+    position: relative;
+    box-shadow: 0 0 10px var(--color-danger);
+}
+.nvr-pulse-dot::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-danger);
+    border-radius: var(--radius-full);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: livePulse 2s ease-in-out infinite;
+}
+
+.icon-btn-nvr {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-btn-nvr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-text-primary);
+}
+
+.nvr-header {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.nvr-select {
+    padding: 6px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-surface);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.nvr-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Video layouts */
+.cam-overlay-nvr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    pointer-events: none;
+}
+
+.cam-overlay-small {
+    padding: 8px;
+}
+
+.cam-badge {
+    pointer-events: auto;
+}
+
+.nvr-layout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-6);
+    flex: 1;
+    overflow: hidden;
+}
+
+.main-cam-container {
+    height: 100%;
+    background-color: #0a0b0d !important;
+}
+
+.main-cam-container.span-5 {
+    grid-column: span 5;
+}
+
+.main-cam-container.span-4 {
+    grid-column: span 4;
+}
+
+.side-cams-container {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    overflow-y: auto;
+    max-height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.no-camera-found {
+    grid-column: span 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-surface);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-xl);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.nvr-view {
+    height: calc(100vh - 140px);
+}
+
+.side-cam-card {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    transition: transform 0.2s, border-color 0.2s;
+    background-color: #979797 !important;
+}
+
+.side-cam-card:hover {
+    transform: scale(1.02);
+}
+
+/* Custom Scrollbar for side-cams */
+.side-cams-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-cams-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-cams-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-full);
+}
+
+/* Custom player controls overlay */
+.nvr-player-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: var(--spacing-4) var(--spacing-6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.main-cam-container:hover .nvr-player-overlay {
+    opacity: 1;
+}
+
+.nvr-player-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.time-display {
+    font-size: var(--font-size-xs);
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.timeline-slider {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.timeline-slider:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.timeline-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+}
+
+.timeline-slider::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+}

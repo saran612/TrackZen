@@ -1,0 +1,126 @@
+.h-full { height: 100%; }
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-danger);
+  border-radius: var(--radius-full);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.camera-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--spacing-4);
+  flex: 1;
+}
+
+.cam-feed {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.cam-feed:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.cam-header {
+  padding: var(--spacing-2) var(--spacing-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border-light);
+  z-index: 2;
+}
+
+.cam-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.cam-content {
+  flex: 1;
+  position: relative;
+  min-height: 200px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.bounding-box {
+  position: absolute;
+  border: 2px solid transparent;
+  pointer-events: none;
+  border-radius: var(--radius-sm);
+}
+
+.box-blue {
+  border-color: var(--color-primary);
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.box-red {
+  border-color: var(--color-danger);
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.box-label {
+  position: absolute;
+  top: -22px;
+  left: -2px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+}
+
+.box-label.bg-danger { background-color: var(--color-danger); }
+.box-label.bg-white { background-color: var(--color-bg-surface); color: var(--color-primary-dark); border: 1px solid var(--color-border); }
+
+.cam-controls {
+  padding: var(--spacing-3);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.scrubber {
+  height: 3px;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  position: relative;
+}
+
+.scrubber-thumb {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  position: absolute;
+  top: -3.5px;
+  left: 25%;
+  box-shadow: 0 0 0 2px white;
+}
+
+.event-feed-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.bottom-1 { bottom: 0.25rem; }
+.left-0 { left: 0; }
+.border-b-2 { border-bottom-width: 2px; }

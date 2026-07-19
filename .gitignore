@@ -32,9 +32,20 @@ dist/
 .DS_Store
 .gemini/
 
-# Media files
-*.mp4
+# Ignore backend models and datasets
+backend/models/
+backend/outputs/
+
+# Local runner logs
 *.log
+
+# Ignore large binary files
+*.pt
+backend/trackzen.db
+
+# Media and other files
+*.mp4
 *.avi
 *.zip
 list.txt
+
